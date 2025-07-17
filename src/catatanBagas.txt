@@ -1,0 +1,52 @@
+1. Instal npm instal untuk menginstal route, axios, dll
+2. pada source tambahkan folder pages, components, dan types
+3. pada folder pages tambahakn page Browser.tsx
+4. kemudian ketik ENDF +enter agar export default muncul kemudia rubah menjadi
+    export default function Browse(){
+    return();
+    }
+5. Kemdian buka template html dan copy bagian body lalu pergi ke tools html to jsx, pada browse sebelum paste, pakai fragment dulu
+    <> paste disini </>
+
+6. Copy assets pada template dan paste di public, kmudian ganti pemanggilan assets pada browse menjadi /assets/images semua
+7. Copy output.css paste di index.css pada react
+8. Instal npm instal react-router-dom, kemudian gunakan App.txs sebagai routering
+    import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+    import Browse from './pages/Browser';
+    function App() {
+    return (
+        <Router>
+        <Routes>
+            <Route path="/" element={<Browse />} />
+        </Routes>
+        </Router>
+    )
+    }
+
+    export default App
+9. open folder public di filemanajer tambahkan folder assets dan masukan folder images ke dalam assets
+10. INstal Swiper kemudian import dalam browse, pada class swiper ubah menjadi pangiil swiper atur class masing masingnya dan 
+    buat SwiperSilde per item
+    <Swiper 
+        className="w-full mt-3" 
+        direction='horizontal' 
+        spaceBetween={16} 
+        slidesPerView="auto" 
+        slidesOffsetBefore={20} 
+        slidesOffsetAfter={20}>
+        <SwiperSlide className="!w-fit pb-[30px]">
+                                <a href="category.html" className="card">
+                                    <div className="flex flex-col w-fit min-w-[90px] rounded-[31px] p-[10px] pb-5 gap-[10px] text-center bg-white shadow-[0_12px_30px_0_#D6D6D680] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF4C1C80] hover:bg-[#FF4C1C] hover:text-white">
+                                        <div className="flex shrink-0 w-[70px] h-[70px] rounded-full bg-white">
+                                            <img
+                                                src="/assets/images/icons/bakery.png"
+                                                className="object-cover w-full h-full object-top"
+                                                alt="icon"
+                                            />
+                                        </div>
+                                        <h3 className="font-semibold text-sm leading-[21px]">Bakery</h3>
+                                    </div>
+                                </a>
+                            </SwiperSlide>
+11. BUat Componentn untuk CategoryCard dan FeaturedRecipeCard dari data browse agar
+    tidak memakan banyak kode
