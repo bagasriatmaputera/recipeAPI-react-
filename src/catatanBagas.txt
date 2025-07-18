@@ -50,3 +50,65 @@
                             </SwiperSlide>
 11. BUat Componentn untuk CategoryCard dan FeaturedRecipeCard dari data browse agar
     tidak memakan banyak kode
+
+12. BUat wrapper pada section category, hal ini bertujuan agar pada page browse tidak lebih dari 1 API bahkan tanpa API,
+    karna akan memudahkan dalam pengambilan data backend juga agar lebih rapih
+
+13. pada folder src, buat CategoryWrapper, isi CategoryWrapper dengan section Category, kemudian panggil di browse
+
+14. INstal axios, kemudian pakai useState dan useEffect untuk mengambil data API
+
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<String | null>(null);
+
+    useEffect(() => {
+        axios.get('')
+        .then(response => {
+            setCategories(response.data.data);
+            setLoading(false);
+        })
+        .catch(error => {
+            setError(error);
+            setLoading(false);
+        })
+    },[]);
+
+    if (loading) {
+        return <p>loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error loading data: {error}</p>
+    }
+
+15. Pada bagian types, tambahakan file type.tsx sebagai interface untuk mengatur type data dan menampung data 
+    hal ini biasa dinamakan interface. export artinya data bisa digunakan di berbagai page dengan langsung, tanap export artinya 
+    hnya digunakan dalam pemanggilan pada interface saja
+
+16. Gunaka maping untuk Swipe category agar loop sesuai category
+    <Swiper
+        className="w-full mt-3"
+        direction='horizontal'
+        spaceBetween={16}
+        slidesPerView="auto"
+        slidesOffsetBefore={20}
+        slidesOffsetAfter={20}>
+        {/* maping data category */}
+        {categories.map((categories) => (
+            <SwiperSlide className="!w-fit pb-[30px]">
+                <CategoryCard category={categories} />
+            </SwiperSlide>
+        ))}
+    </Swiper>
+
+17. namun sebelum itu pada CategoryCard buat props untuk mengmabil aturan data type.tsx
+    interface CategoryCardProps {
+    category: Category
+    }
+
+18. Setelah itu implementasikan pada CategoryCard
+    export default function CategoryCard({ category }: CategoryCardProps) => diwakili variabel category
+    selanjutnya tinggal dilakukan pemanggilan contoh {category.name}
+
+19. untuk icon buat dulu baseURL agar nanti bisa ditambahkan nama icon
