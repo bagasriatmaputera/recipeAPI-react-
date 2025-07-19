@@ -1,9 +1,13 @@
-export default function FeaturedRecipeCard() {
+import type { Recipe } from "../types/type";
+
+export default function FeaturedRecipeCard({ recipes }: RecipesProps) {
+    const baseURL = "http://localhost/recipesApp/public/storage/"
+
     return (
         <a href="details.html" className="card">
             <div className="relative w-[200px] h-[280px] rounded-[30px] bg-white overflow-hidden">
                 <img
-                    src="/assets/images/thumbnails/thumbnail-3.png"
+                    src={`${baseURL}/${recipes.thumbnail}`}
                     className="absolute w-full h-full object-cover"
                     alt="thumbnails"
                 />
@@ -21,14 +25,18 @@ export default function FeaturedRecipeCard() {
                     </div>
                     <div className="flex flex-col gap-[6px]">
                         <h3 className="font-bold text-xl leading-[28px] text-white">
-                            French Toast Blueberries
+                            {recipes.name}
                         </h3>
                         <p className="font-semibold text-xs leading-[18px] text-[#FF4C1C]">
-                            by Masa
+                            {recipes.category.name}
                         </p>
                     </div>
                 </div>
             </div>
         </a>
     );
+}
+
+interface RecipesProps {
+    recipes: Recipe
 }

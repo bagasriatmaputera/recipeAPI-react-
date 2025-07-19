@@ -45,7 +45,7 @@ export default function CategoryWrapper() {
                     slidesOffsetAfter={20}>
                     {/* maping data category */}
                     {categories.map((categories) => (
-                        <SwiperSlide className="!w-fit pb-[30px]">
+                        <SwiperSlide key={categories.id} className="!w-fit pb-[30px]">
                             <CategoryCard category={categories} />
                         </SwiperSlide>
                     ))}

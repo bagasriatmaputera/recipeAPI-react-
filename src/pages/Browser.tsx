@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+
 import 'swiper/swiper-bundle.css'
-import FeaturedRecipeCard from '../components/FeaturedRecipeCard';
 import CategoryWrapper from '../Wrapper/CategoryWrapper';
+import FeaturedWrapper from '../Wrapper/FeaturedWrapper';
 
 export default function Browse() {
     return (
@@ -45,43 +45,8 @@ export default function Browse() {
                 </div>
                 {/* section Category */}
                 <CategoryWrapper/>
-                <section id="MadeByPeople">
-                    <div className="flex items-center justify-between px-5">
-                        <h2 className="font-bold">Made by People</h2>
-                        <a
-                            href="#"
-                            className="font-semibold text-sm leading-[21px] text-[#FF4C1C]"
-                        >
-                            Explore All
-                        </a>
-                    </div>
-                    <div className="swiper w-full mt-3">
-                        <Swiper
-                        className='w-full mt-3'
-                        direction='horizontal'
-                        spaceBetween={16} 
-                        slidesPerView="auto" 
-                        slidesOffsetBefore={20} 
-                        slidesOffsetAfter={15}
-                        >
-                            <SwiperSlide className="!w-fit">
-                                <FeaturedRecipeCard/>
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit">
-                                <FeaturedRecipeCard/>
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit">
-                                <FeaturedRecipeCard/>
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit">
-                                <FeaturedRecipeCard/>
-                            </SwiperSlide>
-                            <SwiperSlide className="!w-fit">
-                                <FeaturedRecipeCard/>
-                            </SwiperSlide>
-                        </Swiper>
-                    </div>
-                </section>
+                {/* section recipe made by */}
+                <FeaturedWrapper/>
                 <div
                     id="BottomNav"
                     className="fixed z-50 bottom-0 w-full max-w-[640px] mx-auto border-t border-[#E7E7E7] py-4 px-5 bg-white/70 backdrop-blur"

@@ -112,3 +112,7 @@
     selanjutnya tinggal dilakukan pemanggilan contoh {category.name}
 
 19. untuk icon buat dulu baseURL agar nanti bisa ditambahkan nama icon
+    const baseURL = "http://localhost/recipesApp/public/storage/"
+
+20. kemudian pada src gunakan backtick ` 
+    src={`${baseURL}/${category.icon}`}
