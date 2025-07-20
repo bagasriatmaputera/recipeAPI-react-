@@ -56,7 +56,7 @@
 
 13. pada folder src, buat CategoryWrapper, isi CategoryWrapper dengan section Category, kemudian panggil di browse
 
-14. INstal axios, kemudian pakai useState dan useEffect untuk mengambil data API
+14. INstal axios, kemudian pakai useState dan useEffect untuk mengambil data API pada wrapper
 
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
@@ -86,7 +86,7 @@
     hal ini biasa dinamakan interface. export artinya data bisa digunakan di berbagai page dengan langsung, tanap export artinya 
     hnya digunakan dalam pemanggilan pada interface saja
 
-16. Gunaka maping untuk Swipe category agar loop sesuai category
+16. Gunaka maping untuk Swipe category agar loop sesuai category, dan beri key={}
     <Swiper
         className="w-full mt-3"
         direction='horizontal'
@@ -96,7 +96,7 @@
         slidesOffsetAfter={20}>
         {/* maping data category */}
         {categories.map((categories) => (
-            <SwiperSlide className="!w-fit pb-[30px]">
+            <SwiperSlide key={categories.id} className="!w-fit pb-[30px]">
                 <CategoryCard category={categories} />
             </SwiperSlide>
         ))}
@@ -116,3 +116,32 @@
 
 20. kemudian pada src gunakan backtick ` 
     src={`${baseURL}/${category.icon}`}
+
+21. Lakukan juga pada section Recipe Made By
+
+22. agar tdak impord swiper.css berulang, letakan swiper css di main.txs saja
+
+===== Search Fitur =====
+23. Buat route nya terlebih dahulu , kemudian baru buat pagenya di folder pages dengan nama SearchDetails
+
+24. Copas dari template yang ada kemudian tambahakan variabel yang dibutuhkan pada page browse
+
+     const [searchQuery, setSearchQuery] = useState('');
+    // variable navigasi otomatis
+    const navigate = useNavigate();
+
+    // Fungsi untuk menangani perubahan input dari user pada kotak pencarian
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value)
+    }
+
+    const handleSearch = () => {
+        if (searchQuery.length > 3) {
+            navigate(`/search?query=${searchQuery}`)
+        }
+    }
+
+25. kemudian pada browse page, modifikasi navigasi search
+
+26. ubah form menjadi div, kemudian beri attribut value, onChange masukan sesuai variable yang sudah dibuat
+    pada button beri onClik handleSearch
