@@ -145,3 +145,78 @@
 
 26. ubah form menjadi div, kemudian beri attribut value, onChange masukan sesuai variable yang sudah dibuat
     pada button beri onClik handleSearch
+
+27. Tambahkan variabel yang dibutuhkan pada SearchDetail
+    variable untuk mengambil parameter = const location = useLocation()
+    variable untuk tempat input quary search = const [searchQuery, setSearchQuery] = useState('')
+    variable untuk hasil pencarian resep = const [searchResult, setSearchResult] = useState<Recipe[]>([])
+    variabel untuk loading = const [loading, setLoading] = useState(false)
+    variabel untuk error = const [error, setError] = useState<String | null >(null);
+
+28. Kemduian gunakan useEffect(()=>{}) untuk mengambil API search dengan query yang diambil
+ 
+    useEffect(() => {
+        // digunakan untuk mengambil nilai parameter URL bernama query.
+        const query = new URLSearchParams(location.search).get('query');
+        if (query) {
+            setSearchQuery(query) //tampilkan di input
+            performSearch(query) //mencari data
+        }
+    }, [location.search])
+
+29. Setelah itu buat variable untuk mendapatkan API search
+     
+     const performSearch = async (query: String) => {
+        // jika query search belum ada maka belum ada data recipe yang ditampilkanxxxx
+        if (!query) {
+            setSearchResult([]);
+            return;
+        }
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.get(`http://localhost/recipesApp/public/api/recipe/search?query=${query}`);
+            setSearchResult(response.data.data);
+        } catch (error) {
+            setError('Error load recipe data')
+        } finally {
+            setLoading(false)
+        }
+     }
+
+30. Tambahkan variable aksi untuk mengambil query
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value;
+        setSearchQuery(query);
+        performSearch(query);
+    }
+
+31. lalu tambahkan loading dan error pada html
+    {loading && <p>loading data...</p>}
+    {error && <p>{error}</p>}
+
+32. Kemdian tmabahkan atribut value, onchange dengan variabke yang sudah dibuat
+    <input
+        type="text"
+        value={searchQuery}
+        onChange={handleInputChange}
+        name="search"
+        id="search"
+        className="appearance-none outline-none w-full font-semibold  placeholder:font-normal placeholder:text-black"
+        placeholder="Find our best food recipes"
+    />
+
+33. Buat card untuk result search dan buat props untuk mendapatkan interface yang sudah dibuat
+    interface SearchRecipeProps {
+    recipes: Recipe
+    }
+
+34. Masukan pada export defautl  ({ recipes }: SearchRecipeProps) 
+    export const CategoryResultSearch = ({ recipes }: SearchRecipeProps) => {
+    const baseURL = "http://localhost/recipesApp/public/storage/"
+    return ();
+    }
+
+35. Lakukan loping dengan maping di page SearchDetails 
+    {searchResult.length > 0 ? (searchResult.map
+                        ((recipe) => (<CategoryResultSearch key={recipe.id} recipes={recipe} />))) : (<p>Belum ada resep terkait</p>)}
