@@ -80,7 +80,7 @@ export default function Browse() {
                     <a href="#" className="nav-items">
                         <div className="flex flex-col items-center text-center gap-[7px] text-sm leading-[21px]">
                             <img
-                                src="//assets/images/icons/crown-grey.svg"
+                                src="/assets/images/icons/crown-grey.svg"
                                 className="w-6 h-6"
                                 alt="icon"
                             />

@@ -21,18 +21,15 @@ export default function SearchDetails() {
             performSearch(query) //mencari data
         }
     }, [location.search])
-
     // fungsi untuk melakukan pencarian
     const performSearch = async (query: String) => {
-        // jika query search belum ada maka belum ada data recipe yang ditampilkanxxxx
+        // jika query search belum ada maka belum ada data recipe yang ditampilkan
         if (!query) {
             setSearchResult([]);
             return;
         }
-
         setLoading(true);
         setError(null);
-
         try {
             const response = await axios.get(`http://localhost/recipesApp/public/api/recipe/search?query=${query}`);
             setSearchResult(response.data.data);
@@ -49,16 +46,17 @@ export default function SearchDetails() {
         setSearchQuery(query);
         performSearch(query);
     }
+
     return (
         <>
             <nav className="flex items-center justify-between px-5 mt-[30px]">
                 <Link to={'/'} className="flex shrink-0">
-                    <img src="assets/images/logos/logo.svg" alt="logo" />
+                    <img src="/assets/images/logos/logo.svg" alt="logo" />
                 </Link>
                 <a href="#">
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_10px_20px_0_#D6D6D6AB] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF4C1C80]">
                         <img
-                            src="assets/images/icons/notification.svg"
+                            src="/assets/images/icons/notification.svg"
                             className="w-5 h-5 object-contain"
                             alt="icon"
                         />
@@ -72,7 +70,7 @@ export default function SearchDetails() {
                     className="flex items-center rounded-full p-[5px_14px] pr-[5px] gap-[10px] bg-white shadow-[0_12px_30px_0_#D6D6D652] transition-all duration-300 border-2 border-solid focus-within:ring-1 focus-within:ring-[#FF4C1C]"
                 >
                     <img
-                        src="assets/images/icons/note-favorite.svg"
+                        src="/assets/images/icons/note-favorite.svg"
                         className="w-6 h-6"
                         alt="icon"
                     />
@@ -86,7 +84,7 @@ export default function SearchDetails() {
                         placeholder="Find our best food recipes"
                     />
                     <button type="submit" className=" flex shrink-0 w-[42px] h-[42px]">
-                        <img src="assets/images/icons/search.svg" alt="icon" />
+                        <img src="/assets/images/icons/search.svg" alt="icon" />
                     </button>
                 </div>
             </div>

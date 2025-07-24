@@ -220,3 +220,28 @@
 35. Lakukan loping dengan maping di page SearchDetails 
     {searchResult.length > 0 ? (searchResult.map
                         ((recipe) => (<CategoryResultSearch key={recipe.id} recipes={recipe} />))) : (<p>Belum ada resep terkait</p>)}
+
+===== Category Details =====
+36. Buat page untuk CategoryDetails di folder page, copy template category pada asset yang sudah didownload
+
+37. Buat Apinya dengan slug
+
+38, Setelah itu, buat Wrapper untuk mendapatkan api/category/slug
+    CategoryFeaturedRecipesWrapper
+
+39. Kemudian buat variable yang dibutuhkan
+    untuk mendapatkan slug = const { slug } = useParams<{ slug: string }>();
+    untuk tempat category = const [category, setCategory] = useState<Category | null>(null);
+    untuk loading = const [loading, setLoading] = useState(true);
+    untuk error = const [error, setError] = useState<string | null>(null);
+
+40. kemudian pada wrapper yang dibuat gunakan mapping
+     {category.recipes.length > 0 ? (
+        category.recipes.map((recipe) => (
+            <SwiperSlide key={recipe.id}>
+                <FeaturedRecipeCard recipes={recipe}></FeaturedRecipeCard>
+            </SwiperSlide>
+        ))) : (<p className="mx-2">Belum ada resep dari kategoti terkait</p>)
+    }
+
+41. Pada page Category details tambahkan wrapper yang sudah dibuat
