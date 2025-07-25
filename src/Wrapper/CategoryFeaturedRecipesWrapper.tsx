@@ -11,6 +11,7 @@ export default function CategoryFeaturedRecipesWrapper() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+
     useEffect(() => {
         axios.get(`http://localhost/recipesApp/public/api/category/${slug}`)
             .then(response => {
@@ -31,6 +32,10 @@ export default function CategoryFeaturedRecipesWrapper() {
         return <p>Error loading data: {error}</p>
     }
 
+    if (!category) {
+        return <p>Category not found</p>
+    }
+
     return (
         <section id="MadeByPeople">
             <div className="flex items-center justify-between px-5">
@@ -43,22 +48,17 @@ export default function CategoryFeaturedRecipesWrapper() {
             </div>
             <div className="swiper w-full mt-3">
                 <Swiper
-                    className='w-full mt-3'
+                    className='w-full mt-3 '
                     direction='horizontal'
                     spaceBetween={16}
                     slidesPerView="auto"
                     slidesOffsetBefore={20}
                     slidesOffsetAfter={15}
                 >
-                    {category.recipes.length > 0 ? (
-                        category.recipes.map((recipe) => (
-                            <SwiperSlide key={recipe.id}>
-                                <FeaturedRecipeCard recipes={recipe} />
-                            </SwiperSlide>
-                        ))
-                    ) : (
-                        <p className="mx-2">Belum ada resep dari kategori terkait</p>
-                    )}
+                    {category.recipes.length > 0 ? (category.recipes.map
+                        ((recipe) => (<SwiperSlide key={recipe.id} className="!w-fit">
+                            <FeaturedRecipeCard recipes={recipe} />
+                        </SwiperSlide>))) : (<p>Belum ada resep dengan kategori terkait</p>)}
                 </Swiper>
             </div>
         </section>

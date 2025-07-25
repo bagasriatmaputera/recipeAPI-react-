@@ -14,6 +14,7 @@ export default function Browse() {
         setSearchQuery(event.target.value)
     }
 
+
     const handleSearch = () => {
         if (searchQuery.length >= 3) {
             navigate(`/search?query=${searchQuery}`)

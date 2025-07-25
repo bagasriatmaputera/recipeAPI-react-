@@ -3,6 +3,7 @@ import CategoryCard from "../components/CategoryCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import type { Category } from "../types/type";
+import { Link } from "react-router-dom";
 
 export default function CategoryWrapper() {
 
@@ -46,7 +47,9 @@ export default function CategoryWrapper() {
                     {/* maping data category */}
                     {categories.map((categories) => (
                         <SwiperSlide key={categories.id} className="!w-fit pb-[30px]">
+                            <Link to={`/category/${categories.slug}`}>
                             <CategoryCard category={categories} />
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>
