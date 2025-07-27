@@ -244,4 +244,65 @@
         ))) : (<p className="mx-2">Belum ada resep dari kategoti terkait</p>)
     }
 
-41. Pada page Category details tambahkan wrapper yang sudah dibuat
+41. Pada page Category details tambahkan wrapper untuk recipe latest dengan nama CategoryLatestRecipeWrapper
+
+42. Kemudian beri variabel yang dibutuhkan seperti
+    const { sulg } = useParams<(slug: string)>();
+    const [category, setCategory] = useState<(Category | null)>(null)
+
+43. kemudian useEffect untuk api category/${Slug}
+     useEffect(() => {
+        axios.get(`http://localhost/recipesApp/public/api/category/${slug}`)
+            .then(response => {
+                setCategory(response.data.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message || "Terjadi Keasalaha");
+                setLoading(false);
+            })
+    }, [slug]);
+
+    if (loading) {
+        return <p>loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error loading data: {error}</p>
+    }
+
+    if (!category) {
+        return <p>Category not found</p>
+    }
+
+44. Kemudian lakukan validasi jika category ada maka lakukan mapping untuk 
+     {category.recipes.length > 0 ?(
+            category.recipes.map((recipe) => (
+        <CategoryResultSearch key={recipe.id} recipes={recipe}></CategoryResultSearch>
+        ))) : (<p>Belum ada recipe</p>)}
+
+45. Beri Link pada arrow-left untuk menjuku route '/'
+    <Link to={'/'}>
+    ...
+    </Link>
+
+46. Buat Pages untuk RecipeDetails
+
+47. Buat Routenya
+    <Route path="/recipe/:slug" element={<RecipeDetails />} />
+
+48. Buat variable untuk mengaktifkan Tab 
+    const [activeTab, setActiveTab] = useState("ingredients")
+
+    const handleTabClick = (tab: string) => {
+        setActiveTab(tab)
+    }
+
+49. Buat Swiper untuk button Tab ingredien, tutorials, review
+
+50. Hapus hidden ditiap tab-content 
+
+51. Kemudian implementasikan function activeTab Terjadi
+    {activeTab === "reviews" && (
+        ...tab-content...
+    )}

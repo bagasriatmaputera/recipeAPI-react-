@@ -4,6 +4,7 @@ export interface Recipe {
     slug: string,
     url_file: string,
     url_video: string,
+    photos: Photo[],
     author: Author,
     category: Category,
     thumbnail: string,
@@ -18,6 +19,10 @@ interface Author {
     photo: string
 }
 
+interface Photo {
+    id: number,
+    photo: string
+}
 interface Tutorial {
     id: number,
     name: string
@@ -40,5 +45,5 @@ export interface Category {
     icon: string,
     slug: string,
     recipes_count: number,
-    recipes: Recipe
+    recipes: Recipe[]
 }
