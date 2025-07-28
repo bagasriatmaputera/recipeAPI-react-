@@ -57,9 +57,10 @@ export default function CategoryFeaturedRecipesWrapper() {
                 >
                     {category.recipes.length > 0 ? (
                         category.recipes.map((recipe) => (
-                        <SwiperSlide key={recipe.id} className="!w-fit">
-                            <FeaturedRecipeCard recipes={recipe} />
-                        </SwiperSlide>))) : (<p>Belum ada resep dengan kategori terkait</p>)}
+                            <SwiperSlide key={recipe.id} className="!w-fit">
+                                <Link to={`/recipe/${recipe.slug}`}>
+                                    <FeaturedRecipeCard recipes={recipe} /></Link>
+                            </SwiperSlide>))) : (<p>Belum ada resep dengan kategori terkait</p>)}
                 </Swiper>
             </div>
         </section>

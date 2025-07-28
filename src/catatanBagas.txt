@@ -85,6 +85,29 @@
 15. Pada bagian types, tambahakan file type.tsx sebagai interface untuk mengatur type data dan menampung data 
     hal ini biasa dinamakan interface. export artinya data bisa digunakan di berbagai page dengan langsung, tanap export artinya 
     hnya digunakan dalam pemanggilan pada interface saja
+    *nama atribut sesuaikan dengan json API
+    Cth:
+
+    export interface Recipe {
+    id: number,
+    name: string,
+    slug: string,
+    url_file: string,
+    url_video: string,
+    photos: Photo[],
+    author: Author,
+    category: Category,
+    thumbnail: string,
+    tutorials: Tutorial[],
+    recipe_ingredient: RecipeIngredient[],
+    about: string
+    }
+
+    interface Author {
+        id: number,
+        name: string,
+        photo: string
+    }
 
 16. Gunaka maping untuk Swipe category agar loop sesuai category, dan beri key={}
     <Swiper
@@ -306,3 +329,68 @@
     {activeTab === "reviews" && (
         ...tab-content...
     )}
+
+52. Buat components untuk Ingredient Card lanjut kebagian recipe detail dulu..
+
+53. Beri variable useState,useParams
+    const { slug } = useParams<{ slug: string }>();
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null)
+
+    kemudian useEffect
+    const baseURL = "http://localhost/recipesApp/public/storage/"
+
+    useEffect(() => {
+        axios.get(`http://localhost/recipesApp/public/api/recipe/${slug}`)
+            .then((response) => {
+                setRecipe(response.data.data);
+                setLoading(false);
+            }).
+            catch((error) => {
+                setError(error);
+                setLoading(false);
+            })
+    }, [slug]);
+
+    if (loading) {
+        return <p>Loading data...</p>
+    }
+
+    if (error) {
+        return <p>{error}</p>
+    }
+
+    if (!recipe) {
+        return <p>Data belum ada</p>
+    }
+
+54. implementasikan json dari API ke page RecipeDetails
+
+55. Buat Swiper pada bagian thumnail 
+
+56. Implementasikan API ke tab Ingredient, lakukan mapping untuk ingredients
+
+    <div className="grid grid-cols-2 gap-5">
+        {recipe.recipe_ingredient.map((recipeIngredient) => (
+            <div key={recipeIngredient.id} className="flex flex-col items-center text-center w-full rounded-[20px] p-[14px] gap-[14px] bg-white shadow-[0_12px_30px_0_#D6D6D680]">
+                <div className="thumbnail flex shrink-0 w-full aspect-[138.5/100] rounded-[20px] bg-[#D9D9D9] overflow-hidden">
+                    <img
+                        src={`${baseURL}/${recipeIngredient.ingredient.photo}`}
+                        className="w-full h-full object-cover"
+                        alt="thumbnails"
+                    />
+                </div>
+                <div className="flex flex-col gap-[2px]">
+                    <p className="font-semibold">{recipeIngredient.ingredient.name}</p>
+                    <p className="text-sm leading-[21px] text-[#848486]">
+                        1 kilogram
+                    </p>
+                </div>
+            </div>
+        ))}
+    </div>
+
+57. Buat atribut <Link> pada Page Browser
+
+58. Implementasikan Tab Tutorials, gunakan maping juga

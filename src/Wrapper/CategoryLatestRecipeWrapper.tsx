@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { CategoryResultSearch } from "../components/CategoryResultSearch";
 import type { Category } from "../types/type";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import CategoryCard from "../components/CategoryCard";
-import FeaturedRecipeCard from "../components/FeaturedRecipeCard";
+import { Link, useParams } from "react-router-dom";
 
 export default function CategoryLatestRecipeWrapper() {
 
-    const { slug } = useParams<{slug: string}>();
-    const [ category, setCategory ] = useState<(Category | null)>(null)
+    const { slug } = useParams<{ slug: string }>();
+    const [category, setCategory] = useState<(Category | null)>(null)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<String | null>(null);
 
@@ -33,7 +31,7 @@ export default function CategoryLatestRecipeWrapper() {
         return <p>Error loading data: {error}</p>
     }
 
-    if(!category){
+    if (!category) {
         return <p>Belum ada recipe </p>
     }
 
@@ -44,11 +42,13 @@ export default function CategoryLatestRecipeWrapper() {
                 <h2 className="font-bold">Latest Recipes</h2>
             </div>
             <div className="flex flex-col gap-[18px] mt-[18px]">
-                {category.recipes.length > 0 ?(
+                {category.recipes.length > 0 ? (
                     category.recipes.map((recipe) => (
-                <CategoryResultSearch key={recipe.id} recipes={recipe}></CategoryResultSearch>
-                ))) : (<p>Belum ada recipe</p>)}
+                        <Link key={recipe.id} to={`/recipe/${recipe.slug}`}>
+                            <CategoryResultSearch  recipes={recipe}></CategoryResultSearch>
+                        </Link>
+                    ))) : (<p>Belum ada recipe</p>)}
             </div>
         </section>
-    ); 
+    );
 }

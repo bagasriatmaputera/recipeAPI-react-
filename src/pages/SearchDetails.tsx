@@ -93,8 +93,12 @@ export default function SearchDetails() {
                     <h2 className="font-bold">Search Results</h2>
                 </div>
                 <div className="flex flex-col gap-[18px] mt-[18px]">
-                    {searchResult.length > 0 ? (searchResult.map
-                        ((recipe) => (<CategoryResultSearch key={recipe.id} recipes={recipe} />))) : (<p>Belum ada resep terkait</p>)}
+                    {searchResult.length > 0 ? (searchResult.map((recipe) => (
+                        <Link key={recipe.id} to={`/recipe/${recipe.slug}`}>
+                            <CategoryResultSearch recipes={recipe} />
+                        </Link>
+                    )))
+                        : (<p>Belum ada resep terkait</p>)}
                 </div>
             </section>
         </>

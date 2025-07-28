@@ -3,6 +3,7 @@ import FeaturedRecipeCard from "../components/FeaturedRecipeCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Recipe } from "../types/type";
+import { Link } from "react-router-dom";
 
 export default function FeaturedWrapper() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -51,7 +52,9 @@ export default function FeaturedWrapper() {
                 >
                     {recipes.map((recipes) => (
                         <SwiperSlide key={recipes.id} className="!w-fit">
+                            <Link to={`/recipe/${recipes.slug}`}>
                             <FeaturedRecipeCard recipes={recipes} />
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>

@@ -4,7 +4,7 @@ export default function FeaturedRecipeCard({ recipes }: RecipesProps) {
     const baseURL = "http://localhost/recipesApp/public/storage/"
 
     return (
-        <a href="details.html" className="card">
+        <div className="card">
             <div className="relative w-[200px] h-[280px] rounded-[30px] bg-white overflow-hidden">
                 <img
                     src={`${baseURL}/${recipes.thumbnail}`}
@@ -33,7 +33,7 @@ export default function FeaturedRecipeCard({ recipes }: RecipesProps) {
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
     );
 }
 
