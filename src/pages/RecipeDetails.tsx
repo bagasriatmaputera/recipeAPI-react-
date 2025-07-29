@@ -292,67 +292,24 @@ export default function RecipeDetails() {
                         >
                             <iframe
                                 className="w-full aspect-video rounded-[20px] bg-[#D9D9D9]"
-                                src="https://www.youtube.com/embed/n1YeqIlbkxc"
+                                src={`https://www.youtube.com/embed/${recipe.url_video}`}
                             />
-                            <div className="list-items-container flex flex-col mt-[26px]">
-                                <div className="list flex gap-[14px]">
-                                    <div className="flex relative">
-                                        <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
-                                            <span>1</span>
+                            {recipe.tutorials.map((tutorials, index) => (
+                                <div key={tutorials.id} className="list-items-container flex flex-col mt-[26px]">
+                                    <div className="list flex gap-[14px]">
+                                        <div className="flex relative">
+                                            <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
+                                                <span>{index + 1}</span>
+                                            </div>
+                                            {/* the last .line will be hidden by CSS */}
+                                            <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
                                         </div>
-                                        {/* the last .line will be hidden by CSS */}
-                                        <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
+                                        <p className="leading-8 pb-[30px]">
+                                            {tutorials.name}
+                                        </p>
                                     </div>
-                                    <p className="leading-8 pb-[30px]">
-                                        Siapkan telur rebus dicampur dengan mentega rendah kalori
-                                    </p>
                                 </div>
-                                <div className="list flex gap-[14px]">
-                                    <div className="flex relative">
-                                        <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
-                                            <span>2</span>
-                                        </div>
-                                        <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
-                                    </div>
-                                    <p className="leading-8 pb-[30px]">
-                                        Panaskan minyak dengan api stabil agar tidak gosong nanti
-                                        dagingnya
-                                    </p>
-                                </div>
-                                <div className="list flex gap-[14px]">
-                                    <div className="flex relative">
-                                        <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
-                                            <span>3</span>
-                                        </div>
-                                        <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
-                                    </div>
-                                    <p className="leading-8 pb-[30px]">
-                                        Roti disajikan tanpa wijen agar rasanya tidak bertabrakan salada
-                                    </p>
-                                </div>
-                                <div className="list flex gap-[14px]">
-                                    <div className="flex relative">
-                                        <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
-                                            <span>4</span>
-                                        </div>
-                                        <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
-                                    </div>
-                                    <p className="leading-8 pb-[30px]">
-                                        Grill daging sapi dengan keadaan frozen dan berikan sea salts
-                                    </p>
-                                </div>
-                                <div className="list flex gap-[14px]">
-                                    <div className="flex relative">
-                                        <div className="relative z-10 flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-white shadow-[0_12px_30px_0_#D6D6D680] font-bold text-sm leading-[21px]">
-                                            <span>5</span>
-                                        </div>
-                                        <div className="line absolute left-1/2 transform -translate-x-1/2 h-full border-dashed border border-[#DEDFEB]" />
-                                    </div>
-                                    <p className="leading-8 pb-[30px]">
-                                        Gabungkan satu per satu ketika masih panas jadi lebih melekat
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     )}
                     {/* reviews */}

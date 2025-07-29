@@ -9,7 +9,7 @@ export interface Recipe {
     category: Category,
     thumbnail: string,
     tutorials: Tutorial[],
-    recipe_ingredients: RecipeIngredient[],
+    recipe_ingredient: RecipeIngredient[],
     about: string
 }
 
